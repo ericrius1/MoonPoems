@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "deploy": "vercel --prod"
+    // "deploy": "vercel --prod"
+    "deploy": "vercel"
   },
   "dependencies": {
     "vercel": "^23.1.2"
