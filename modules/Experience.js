@@ -22,19 +22,17 @@ export default class Experience {
     document.body.classList.add('ready')
 
 
-    let canvasContainer = document.querySelector('div.canvas-container');
+    this.canvasContainer = document.querySelector('div.canvas-container');
     this.canvas = document.createElement('canvas')
     this.canvas.setAttribute('id', 'webgl_canvas');
 
-    canvasContainer.appendChild(this.canvas);
+    this.canvasContainer.appendChild(this.canvas);
 
-    let devicePixelRatio = window.devicePixelRatio;
+    this.devicePixelRatio = window.devicePixelRatio;
 
     this.canvas.setAttribute('tabindex', 0); // adds focus to canvas so keyboard events work
     this.canvas.style.width = '100%';
     this.canvas.style.height = '100%';
-    this.canvas.width = canvasContainer.clientWidth;
-    this.canvas.height = canvasContainer.clientHeight;
     // this.canvas.focus();
 
     this.renderer = new THREE.WebGLRenderer({
@@ -44,7 +42,7 @@ export default class Experience {
     })
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    this.renderer.setSize(this.canvas.width * devicePixelRatio, this.canvas.height * devicePixelRatio, false);
+    this.renderer.setSize(this.canvasContainer.clientWidth * this.devicePixelRatio, this.canvasContainer.clientHeight * this.devicePixelRatio, false);
 
 
     this.camera = new THREE.PerspectiveCamera(70, this.canvas.width / this.canvas.height, .1, 100);
@@ -84,28 +82,49 @@ export default class Experience {
   }
 
   twirl() {
-    console.log('twirl');
     let twirlAnim = anime({
-      targets: { rotationY: this.moon.rotation.y },
+      targets: {
+        rotationX: this.moon.rotation.x,
+        rotationY: this.moon.rotation.y,
+        rotationZ: this.moon.rotation.z
+      },
+      rotationX: Math.random() * Math.PI * 2,
       rotationY: Math.random() * Math.PI * 2,
+      rotationZ: Math.random() * Math.PI * 2,
       duration: 1000,
+      easing: "easeInOutQuart",
       update: (a) => {
-        this.moon.rotation.y = a.animations[0].currentValue;
+        this.moon.rotation.x = a.animations[0].currentValue;
+        this.moon.rotation.y = a.animations[1].currentValue;
+        this.moon.rotation.z = a.animations[2].currentValue;
         this.renderer.render(this.scene, this.camera)
       }
 
     })
   }
 
+  resize() {
+    this.renderer.setSize(this.canvasContainer.clientWidth * this.devicePixelRatio, this.canvasContainer.clientHeight * this.devicePixelRatio, false)
+
+    this.camera.aspect = this.canvas.width / this.canvas.height;
+    this.camera.updateProjectionMatrix();
+    this.renderer.render(this.scene, this.camera)
+
+  }
+
   // have poems on left, canvas middle, and words of poems on right
 
   addEventListeners() {
     this.boundTwirl = this.twirl.bind(this);
+    this.boundResize = this.resize.bind(this);
+
     window.addEventListener('hashchange', this.boundTwirl)
+    window.addEventListener('resize', this.boundResize)
   }
 
   removeEventListeners() {
     window.removeEventListener('hashchange', this.boundTwirl);
+    window.removeEventListener('resize', this.boundResize)
   }
 }
 
