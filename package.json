@@ -3,6 +3,7 @@
     "deploy": "vercel"
   },
   "dependencies": {
+    "three": "^0.136.0",
     "vercel": "^23.1.2"
   }
 }
