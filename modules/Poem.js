@@ -1,5 +1,9 @@
 export default class Poem {
-  constructor() {
+  constructor(el) {
+    this.el = el;
+    this.el.addEventListener('click', () => {
+      console.log('yah')
+    })
 
   }
 

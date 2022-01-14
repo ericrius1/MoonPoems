@@ -5,6 +5,8 @@ import Poem from './Poem.js'
 let instance = null
 
 window.poemsEl = document.querySelector('.poems')
+window.articleEls = document.querySelectorAll('article')
+
 
 class Experience {
 
@@ -17,8 +19,6 @@ class Experience {
 
     document.body.classList.add('ready')
 
-    let moonPoem1 = new Poem();
-    moonPoem1.highlight();
 
     let canvasContainer = document.querySelector('div.canvas-container');
     this.canvas = document.createElement('canvas')
@@ -66,11 +66,23 @@ class Experience {
     this.scene.add(this.moon);
     this.renderer.render(this.scene, this.camera)
     this.addEventListeners();
+    this.createPoems();
+  }
+
+  createPoems() {
+    let fragment = document.createDocumentFragment();
+    for (let i = 0; i < articleEls.length; i++) {
+      let articleEl = articleEls[i];
+      let poemEls = articleEl.querySelectorAll('.poem');
+      for (let j = 0; j < poemEls.length; j++) {
+        let poemEl = poemEls[j];
+        let poem = new Poem(poemEl);
+      }
+    }
   }
 
   twirl() {
     console.log('twirl');
-
   }
 
   // have poems on left, canvas middle, and words of poems on right
