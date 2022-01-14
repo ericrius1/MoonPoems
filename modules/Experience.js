@@ -1,9 +1,10 @@
 import * as THREE from '../libs/three/three.module.js'
 import anime from '../libs/anime.es.js'
+import Poem from './Poem.js'
 
 let instance = null
 
-let scrollEl = document.querySelector('.poems')
+window.poemsEl = document.querySelector('.poems')
 
 class Experience {
 
@@ -16,10 +17,12 @@ class Experience {
 
     document.body.classList.add('ready')
 
+    let moonPoem1 = new Poem();
+    moonPoem1.highlight();
+
     let canvasContainer = document.querySelector('div.canvas-container');
     this.canvas = document.createElement('canvas')
     this.canvas.setAttribute('id', 'webgl_canvas');
-
 
     canvasContainer.appendChild(this.canvas);
 
@@ -61,7 +64,6 @@ class Experience {
     mat.color.setHex(0x5A87FF).convertSRGBToLinear();
     this.mesh = new THREE.Mesh(sphereGeo, mat)
     this.scene.add(this.mesh);
-
     this.renderer.render(this.scene, this.camera)
   }
 
@@ -70,14 +72,25 @@ class Experience {
     offset = offset || 0;
     let el = document.querySelector(selector);
     let scrollAnim = anime({
-      targets: { scroll: poemsEl.scrollTop }
+      targets: { scroll: poemsEl.scrollTop },
+      scroll: el.offsetTop - offset,
+      duration: 2000,
+      easing: 'easeInOutQuart',
+      update: (a) => {
+        let scrollPos = a.animations[0].currentValue;
+        console.log(scrollPos);
+        poemsEl.scrollTop = scrollPos
+      },
+      complete: () => {
+        if (callback) { callback() }
+      }
     })
-
   }
 }
 
 const experience = new Experience();
 
+let selector = "#domNode"
 
 
 // let dropGeo = new THREE.SphereGeometry(1, 10, 10)
