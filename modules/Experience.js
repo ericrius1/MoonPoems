@@ -4,11 +4,10 @@ import Poem from './Poem.js'
 
 let instance = null
 
-window.poemsEl = document.querySelector('.poems')
-window.articleEls = document.querySelectorAll('article')
 
 
-class Experience {
+
+export default class Experience {
 
   constructor() {
     if (instance) {
@@ -16,6 +15,9 @@ class Experience {
     }
     instance = this
     window.experience = this
+
+    this.poemsEl = document.querySelector('.poems')
+    this.articleEls = document.querySelectorAll('article')
 
     document.body.classList.add('ready')
 
@@ -47,7 +49,7 @@ class Experience {
 
     this.camera = new THREE.PerspectiveCamera(70, this.canvas.width / this.canvas.height, .1, 100);
     this.camera.position.z += 10;
-    // this.camera.updateProjectionMatrix()
+    this.camera.updateProjectionMatrix()
     this.camera.lookAt(new THREE.Vector3())
     this.scene = new THREE.Scene();
     this.scene.add(this.camera);
@@ -71,8 +73,8 @@ class Experience {
 
   createPoems() {
     let fragment = document.createDocumentFragment();
-    for (let i = 0; i < articleEls.length; i++) {
-      let articleEl = articleEls[i];
+    for (let i = 0; i < this.articleEls.length; i++) {
+      let articleEl = this.articleEls[i];
       let poemEls = articleEl.querySelectorAll('.poem');
       for (let j = 0; j < poemEls.length; j++) {
         let poemEl = poemEls[j];
@@ -83,27 +85,19 @@ class Experience {
 
   twirl() {
     console.log('twirl');
+    let twirlAnim = anime({
+      targets: { rotationY: this.moon.rotation.y },
+      rotationY: Math.random() * Math.PI * 2,
+      duration: 1000,
+      update: (a) => {
+        this.moon.rotation.y = a.animations[0].currentValue;
+        this.renderer.render(this.scene, this.camera)
+      }
+
+    })
   }
 
   // have poems on left, canvas middle, and words of poems on right
-  scrollTo(selector, offset, callback) {
-    offset = offset || 0;
-    let el = document.querySelector(selector);
-    let scrollAnim = anime({
-      targets: { scroll: poemsEl.scrollTop },
-      scroll: el.offsetTop - offset,
-      duration: 2000,
-      easing: 'easeInOutQuart',
-      update: (a) => {
-        let scrollPos = a.animations[0].currentValue;
-        console.log(scrollPos);
-        poemsEl.scrollTop = scrollPos
-      },
-      complete: () => {
-        if (callback) { callback() }
-      }
-    })
-  }
 
   addEventListeners() {
     this.boundTwirl = this.twirl.bind(this);

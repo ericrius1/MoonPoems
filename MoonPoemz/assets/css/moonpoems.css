@@ -699,7 +699,7 @@ input.progress[value]::-webkit-slider-thumb {
   display: none;
 }
 
-.demos {
+.poems {
   top: 60px;
   width: 100%;
   min-width: auto;
@@ -715,7 +715,7 @@ input.progress[value]::-webkit-slider-thumb {
     display: inherit;
     width: calc(100% - 380px);
   }
-  .demos {
+  .poems {
     top: 0;
     width: 380px;
     height: 100%;
@@ -742,7 +742,7 @@ input.progress[value]::-webkit-slider-thumb {
   .sidebar {
     display: inherit;
   }
-  .demos {
+  .poems {
     width: calc(50% - 240px);
   }
   .demo-info {
