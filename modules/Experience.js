@@ -38,7 +38,8 @@ export default class Experience {
     this.renderer = new THREE.WebGLRenderer({
       // antialias: true,
       canvas: this.canvas,
-      powerPreference: 'high-performance'
+      powerPreference: 'high-performance',
+      alpha: true
     })
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
@@ -51,7 +52,7 @@ export default class Experience {
     this.camera.lookAt(new THREE.Vector3())
     this.scene = new THREE.Scene();
     this.scene.add(this.camera);
-    this.renderer.setClearColor(0x1101222, 1);
+    this.renderer.setClearColor(0x1101222, 0);
 
     this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
     this.hemiLight.color.convertSRGBToLinear();

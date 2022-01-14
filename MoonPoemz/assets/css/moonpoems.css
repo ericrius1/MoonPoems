@@ -199,7 +199,7 @@ h2 {
 
 /* Info pane */
 
-.demo-info {
+.visualization {
   flex-direction: column;
   font-size: 16px;
   line-height: 22px;
@@ -215,62 +215,62 @@ h2 {
   padding: 20px;
 }
 
-.demo-info pre {
+.visualization pre {
   font-variant-ligatures: none;
   -webkit-font-variant-ligatures: none;
 }
 
-.demo-info code {
+.visualization code {
   font-family: "Input Mono Reg", monospace;
   font-size: 14px;
   line-height: 22px;
   white-space: pre-wrap;
 }
 
-.demo-info p {
+.visualization p {
   margin-bottom: 20px;
 }
 
-.demo-info p,
-.demo-info td {
+.visualization p,
+.visualization td {
   color: #F6F4F2;
 }
 
-.demo-info i {
+.visualization i {
   font-style: italic;
 }
 
-.demo-info a {
+.visualization a {
   text-decoration: none;
   border-bottom: 1px dotted currentColor;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
-.demo-info a:hover {
+.visualization a:hover {
   border-bottom: 1px solid currentColor;
 }
 
-.demo-info a[href^="http"],
-.demo-info a[href^="http"]:visited {
+.visualization a[href^="http"],
+.visualization a[href^="http"]:visited {
   color: #F6F4F2;
 }
 
-.demo-info p.bubble {
+.visualization p.bubble {
   display: inline-block;
   position: relative;
   padding: 8px 12px;
 }
 
-.demo-info p.bubble.warning {
+.visualization p.bubble.warning {
   color: #FBF38C;
 }
 
-.demo-info p.bubble.info {
+.visualization p.bubble.info {
   color: #61C3FF;
 }
 
-.demo-info p.bubble:after {
+.visualization p.bubble:after {
   content: "";
   pointer-events: none;
   color: currentColor;
@@ -285,15 +285,15 @@ h2 {
   opacity: .05;
 }
 
-.demo-info code.hljs {
+.visualization code.hljs {
   display: inline-block;
 }
 
-.demo-info pre {
+.visualization pre {
   margin-bottom: 20px;
 }
 
-.demo-info pre code {
+.visualization pre code {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -303,7 +303,7 @@ h2 {
   border-radius: 3px;
 }
 
-.demo-info p code {
+.visualization p code {
   position: relative;
   padding: 0 2px;
   height: 20px;
@@ -312,21 +312,21 @@ h2 {
   border-radius: 3px;
 }
 
-.demo-info table {
+.visualization table {
   margin-bottom: 20px;
   border: 1px solid rgba(255,255,255,.15);
   border-spacing: 0;
   border-radius: 3px;
 }
 
-.demo-info td {
+.visualization td {
   vertical-align: middle;
   padding: 8px 12px;
   border-left: 1px solid rgba(255,255,255,.15);
   border-top: 1px solid rgba(255,255,255,.15);
 }
 
-.demo-info thead td {
+.visualization thead td {
   text-transform: uppercase;
   font-size: 16px;
   line-height: 22px;
@@ -335,7 +335,7 @@ h2 {
   border-top: none;
 }
 
-.demo-info td:first-child {
+.visualization td:first-child {
   border-left: none;
 }
 
@@ -695,8 +695,11 @@ input.progress[value]::-webkit-slider-thumb {
 /* Responsive */
 
 .sidebar,
-.demo-info {
-  display: none;
+.visualization {
+  /* display: none; */
+  width: 100%;
+  position: absolute;
+  left: 0;
 }
 
 .poems {
@@ -711,9 +714,10 @@ input.progress[value]::-webkit-slider-thumb {
   .header {
     width: 239px;
   }
-  .demo-info {
+  .visualization {
     display: inherit;
     width: calc(100% - 380px);
+    position: relative;
   }
   .poems {
     top: 0;
@@ -745,7 +749,7 @@ input.progress[value]::-webkit-slider-thumb {
   .poems {
     width: calc(50% - 240px);
   }
-  .demo-info {
+  .visualization {
     width: 50%;
   }
 }
