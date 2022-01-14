@@ -3,6 +3,8 @@ import anime from '../libs/anime.es.js'
 
 let instance = null
 
+let scrollEl = document.querySelector('.poems')
+
 class Experience {
 
   constructor() {
@@ -49,16 +51,27 @@ class Experience {
     this.renderer.setClearColor(0x1101222, 1);
 
     this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+    this.hemiLight.color.convertSRGBToLinear();
+    this.hemiLight.groundColor.convertSRGBToLinear();
 
     this.scene.add(this.hemiLight)
 
-    let sphereGeo = new THREE.SphereGeometry(1, 30, 30);
-    let mat = new THREE.MeshBasicMaterial();
+    let sphereGeo = new THREE.IcosahedronGeometry(1, 0, 30);
+    let mat = new THREE.MeshStandardMaterial();
     mat.color.setHex(0x5A87FF).convertSRGBToLinear();
     this.mesh = new THREE.Mesh(sphereGeo, mat)
     this.scene.add(this.mesh);
 
     this.renderer.render(this.scene, this.camera)
+  }
+
+  // have poems on left, canvas middle, and words of poems on right
+  scrollTo(selector, offset, callback) {
+    offset = offset || 0;
+    let el = document.querySelector(selector);
+    let scrollAnim = anime({
+      targets: { scroll: poemsEl.scrollTop }
+    })
 
   }
 }
