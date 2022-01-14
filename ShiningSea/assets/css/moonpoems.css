@@ -205,7 +205,7 @@ h2 {
   line-height: 22px;
 }
 
-.info-output {
+.canvas-container{
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
