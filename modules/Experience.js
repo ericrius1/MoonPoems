@@ -59,12 +59,18 @@ class Experience {
 
     this.scene.add(this.hemiLight)
 
-    let sphereGeo = new THREE.IcosahedronGeometry(1, 0, 30);
-    let mat = new THREE.MeshStandardMaterial();
-    mat.color.setHex(0x5A87FF).convertSRGBToLinear();
-    this.mesh = new THREE.Mesh(sphereGeo, mat)
-    this.scene.add(this.mesh);
+    let moonGeo = new THREE.IcosahedronGeometry(1, 0, 30);
+    let moonMat = new THREE.MeshStandardMaterial();
+    moonMat.color.setHex(0x5A87FF).convertSRGBToLinear();
+    this.moon = new THREE.Mesh(moonGeo, moonMat)
+    this.scene.add(this.moon);
     this.renderer.render(this.scene, this.camera)
+    this.addEventListeners();
+  }
+
+  twirl() {
+    console.log('twirl');
+
   }
 
   // have poems on left, canvas middle, and words of poems on right
@@ -86,11 +92,21 @@ class Experience {
       }
     })
   }
+
+  addEventListeners() {
+    this.boundTwirl = this.twirl.bind(this);
+    window.addEventListener('hashchange', this.boundTwirl)
+  }
+
+  removeEventListeners() {
+    window.removeEventListener('hashchange', this.boundTwirl);
+  }
 }
 
 const experience = new Experience();
 
 let selector = "#domNode"
+
 
 
 // let dropGeo = new THREE.SphereGeometry(1, 10, 10)
