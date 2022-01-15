@@ -208,7 +208,7 @@ h2 {
 .canvas-container {
   overflow-x: hidden;
   overflow-y: auto;
-  position: relative;
+  position: fixed;
   top: 0;
   width: 100%;
   height: calc(100% - 60px);
