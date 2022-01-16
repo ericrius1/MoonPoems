@@ -6,7 +6,7 @@ let instance = null
 
 
 
-
+console.log('YAHHHHH')
 export default class Experience {
 
   constructor() {
@@ -23,6 +23,11 @@ export default class Experience {
 
 
     this.canvasContainer = document.querySelector('div.canvas-container');
+
+    // CANVAS CONTAINER COMMENTED OUT
+    if (!this.canvasContainer) return;
+
+
     this.canvas = document.createElement('canvas')
     this.canvas.setAttribute('id', 'webgl_canvas');
 
@@ -92,7 +97,7 @@ export default class Experience {
       rotationX: Math.random() * Math.PI * 2,
       rotationY: Math.random() * Math.PI * 2,
       rotationZ: Math.random() * Math.PI * 2,
-      duration: 1000,
+      duration: 500,
       easing: "easeInOutQuart",
       update: (a) => {
         this.moon.rotation.x = a.animations[0].currentValue;

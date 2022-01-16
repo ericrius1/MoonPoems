@@ -5,7 +5,7 @@ export function scrollTo(el, container, offset, callback) {
   let scrollAnim = anime({
     targets: { scroll: container.scrollTop },
     scroll: el.offsetTop - offset,
-    duration: 1000,
+    duration: 500,
     easing: 'easeInOutQuart',
     update: (a) => {
       let scrollPos = a.animations[0].currentValue;
