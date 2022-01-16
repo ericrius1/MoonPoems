@@ -130,32 +130,8 @@ h2 {
   padding: 8px 12px;
 }
 
-.visualization p.bubble.warning {
-  color: #FBF38C;
-}
 
-.visualization p.bubble.info {
-  color: #61C3FF;
-}
 
-.visualization p.bubble:after {
-  content: "";
-  pointer-events: none;
-  color: currentColor;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: currentColor;
-  border-radius: 3px;
-  opacity: .05;
-}
-
-.visualization code.hljs {
-  display: inline-block;
-}
 
 .visualization pre {
   margin-bottom: 20px;
