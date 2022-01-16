@@ -18,7 +18,7 @@ body {
 }
 
 .content {
-  overflow: hidden;
+  /* overflow: hidden; */
   opacity: 0;
   display: flex;
   flex-direction: row;
@@ -50,7 +50,6 @@ body {
   color: currentColor;
 }
 
-
 .logo:hover {
   opacity: 1;
 }
@@ -59,6 +58,7 @@ body {
   opacity: .6;
   color: currentColor;
 }
+
 
 header {
   position: sticky;
@@ -93,12 +93,12 @@ h2 {
   flex-direction: column;
   font-size: 16px;
   line-height: 22px;
+  position: fixed;
+  pointer-events: none;
 }
 
 .canvas-container {
   overflow-x: hidden;
-  overflow-y: hidden;
-  position: relative;
   top: 0;
   width: 100%;
   height: calc(100% - 60px);
@@ -109,7 +109,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Poems */
 
 .poems {
   overflow-y: scroll;
@@ -173,17 +172,6 @@ article {
   flex-wrap: wrap;
 }
 
-.square,
-.circle {
-  pointer-events: none;
-  position: relative;
-  width: 28px;
-  height: 28px;
-  margin: 1px;
-  background-color: currentColor;
-  font-size: 14px;
-}
-
 
 .align-center {
   align-items: center;
@@ -193,7 +181,8 @@ article {
 /* Responsive */
 
 .visualization {
-  display: none;
+  /* display: none; */
+  position: absolute;
 }
 
 .poems {
@@ -201,7 +190,7 @@ article {
   width: 100%;
   min-width: auto;
   height: calc(100% - 60px);
-  /* -webkit-overflow-scrolling: touch; */
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (min-width: 800px) {

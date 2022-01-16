@@ -34,7 +34,7 @@ export default class Experience {
 
     this.devicePixelRatio = window.devicePixelRatio;
 
-    this.canvas.setAttribute('tabindex', 0); // adds focus to canvas so keyboard events work
+    // this.canvas.setAttribute('tabindex', 0); // adds focus to canvas so keyboard events work
     this.canvas.style.width = '100%';
     this.canvas.style.height = '100%';
     // this.canvas.focus();
