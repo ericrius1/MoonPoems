@@ -96,109 +96,7 @@ h2 {
   height: 100%;
 }
 
-/* Sidebar */
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 240px;
-  padding-top: 60px;
-  border-right: 1px solid rgba(0,0,0,.65);
-}
-
-.sidebar-info {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-.navigation {
-  overflow-y: auto;
-  width: 100%;
-  height: 100%;
-  padding: 10px 0 20px 20px;
-}
-
-.navigation ul {
-  height: 30px;
-  overflow-y: hidden;
-  -webkit-transition:opacity .4s ease;
-  transition: opacity .4s ease;
-}
-
-.navigation ul li {
-  position: relative;
-}
-
-.navigation ul li:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 4px;
-  left: 2px;
-  width: 1px;
-  height: calc(100% - 8px);
-  background-color: white;
-}
-
-.navigation ul li:first-child:before {
-  display: none;
-}
-
-.navigation a {
-  display: block;
-  padding-left: 10px;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-
-.navigation ul li:first-child a {
-  padding-left: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.navigation ul li a,
-.navigation ul li:before {
-  opacity: .4;
-}
-
-.navigation ul li a {
-  transition: opacity .4s ease, color .4s ease;
-}
-
-.navigation ul.active a {
-  opacity: .7;
-}
-
-.navigation ul li:hover a,
-.navigation ul li:hover:before {
-  transition: none;
-  opacity: 1;
-}
-
-.navigation ul li.active a,
-.navigation ul li.active:before {
-  opacity: 1;
-  color: currentColor;
-}
-
-.navigation ul li.active:before {
-  background-color: currentColor;
-}
-
-.navigation ul.active li:first-child a,
-.navigation ul.active li:first-child a:hover {
-  opacity: 1;
-  color: currentColor;
-}
-
-/* Info pane */
-
+/* Visualization pane */
 .visualization {
   flex-direction: column;
   font-size: 16px;
@@ -220,41 +118,11 @@ h2 {
   -webkit-font-variant-ligatures: none;
 }
 
-.visualization code {
-  font-family: "Input Mono Reg", monospace;
-  font-size: 14px;
-  line-height: 22px;
-  white-space: pre-wrap;
-}
 
 .visualization p {
   margin-bottom: 20px;
 }
 
-.visualization p,
-.visualization td {
-  color: #F6F4F2;
-}
-
-.visualization i {
-  font-style: italic;
-}
-
-.visualization a {
-  text-decoration: none;
-  border-bottom: 1px dotted currentColor;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.visualization a:hover {
-  border-bottom: 1px solid currentColor;
-}
-
-.visualization a[href^="http"],
-.visualization a[href^="http"]:visited {
-  color: #F6F4F2;
-}
 
 .visualization p.bubble {
   display: inline-block;
@@ -694,7 +562,6 @@ input.progress[value]::-webkit-slider-thumb {
 
 /* Responsive */
 
-.sidebar,
 .visualization {
   display: none;
   /* width: 100%; */
@@ -743,9 +610,7 @@ input.progress[value]::-webkit-slider-thumb {
 }
 
 @media (min-width: 1100px) {
-  .sidebar {
-    display: inherit;
-  }
+
   .poems {
     width: calc(50% - 240px);
   }
