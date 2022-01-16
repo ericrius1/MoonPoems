@@ -6,7 +6,6 @@ let instance = null
 
 
 
-console.log('YAHHHHH')
 export default class Experience {
 
   constructor() {
