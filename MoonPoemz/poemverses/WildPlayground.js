@@ -3,15 +3,13 @@ import * as THREE from '../../libs/three/three.module.js'
 
 
 // register canvas with experience so it can be updated
-export class OneRule {
+export class WildPlayground {
   constructor() {
     this.experience = new Experience
 
-    console.log('yaa One rule check me out')
-    this.id = 'oneRule';
+    this.id = 'wildPlayground';
     this.containerEl = document.querySelector(`#${this.id}`);
     this.init();
-
   }
 
   init() {
@@ -56,4 +54,4 @@ export class OneRule {
 
 }
 
-let oneRule = new OneRule();
+let wildPlayground = new WildPlayground();

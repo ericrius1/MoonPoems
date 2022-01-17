@@ -10,7 +10,6 @@ export default class Poem {
     this.el.addEventListener('click', () => {
       scrollTo(this.el, this.poemsEl, 60, () => {
       });
-      this.experience.twirl();
     })
   }
 
