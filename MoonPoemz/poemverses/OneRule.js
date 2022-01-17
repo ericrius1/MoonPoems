@@ -22,9 +22,6 @@ export class OneRule {
     this.height = this.containerEl.offsetHeight;
 
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 100);
-    this.camera.position.z += 0
-    this.camera.position.y += 0;
-    this.camera.updateMatrixWorld();
 
     this.canvasEl = document.createElement('canvas');
     this.context = this.canvasEl.getContext('2d');
@@ -64,7 +61,9 @@ export class OneRule {
 
   render() {
     this.renderer.render(this.scene, this.camera)
-    this.context.drawImage(this.renderer.domElement, 0, 0, this.width * this.devicePixelRatio, this.height * this.devicePixelRatio);
+    this.context.drawImage(this.renderer.domElement, 0, 0);
+
+
   }
 
   start() {
