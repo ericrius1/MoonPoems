@@ -29,7 +29,7 @@ export default class Experience {
     })
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    this.renderer.setClearColor(0x1101222, 0.3);
+    this.renderer.setClearColor(0x1101222, 1);
 
     this.devicePixelRatio = window.devicePixelRatio;
 

@@ -21,10 +21,13 @@ export class WildPlayground {
     this.height = this.containerEl.offsetHeight;
 
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 100);
+    // this.camera.position.z += 5;
+    // this.camera.position.y += .2;
+    // this.camera.lookAt(new THREE.Vector3());
     this.canvasEl = document.createElement('canvas');
     this.context = this.canvasEl.getContext('2d');
 
-    this.renderer.setSize(this.width, this.height, false)
+    // this.renderer.setSize(this.width * 2, this.height * 2, false)
     this.canvasEl.style.width = this.width + "px";
     this.canvasEl.style.height = this.height + "px";
 
