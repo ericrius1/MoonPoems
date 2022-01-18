@@ -1,6 +1,6 @@
 import anime from "../../libs/anime.es.js";
 
-export function scrollTo(el, container, offset, callback) {
+export function animateScrollTo(el, container, offset, callback) {
   offset = offset || 0;
   let scrollAnim = anime({
     targets: { scroll: container.scrollTop },

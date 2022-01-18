@@ -1,14 +1,20 @@
 import Experience from "../../modules/Experience.js"
 import * as THREE from '../../libs/three/three.module.js'
-
+import { animateScrollTo } from '../../modules/utils/dom.js'
 
 // register canvas with experience so it can be updated
 export class OneRule {
   constructor() {
     this.experience = new Experience
+    this.poemsEl = this.experience.poemsEl
 
     this.id = 'oneRule';
     this.containerEl = document.querySelector(`#${this.id}`);
+
+    this.containerEl.addEventListener('click', () => {
+      animateScrollTo(this.containerEl, this.poemsEl, 60)
+    })
+
     this.init();
 
   }
@@ -54,8 +60,6 @@ export class OneRule {
     this.centerMesh = new THREE.Mesh(geo, mat);
     this.centerMesh.position.set(0, 0, -7)
     this.scene.add(this.centerMesh);
-
-    // this.camera.lookAt(this.centerMesh.position)
 
   }
 

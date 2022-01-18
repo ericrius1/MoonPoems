@@ -1,14 +1,19 @@
 import Experience from "../../modules/Experience.js"
 import * as THREE from '../../libs/three/three.module.js'
-
+import { animateScrollTo } from "../../modules/utils/dom.js";
 
 // register canvas with experience so it can be updated
 export class WildPlayground {
   constructor() {
-    this.experience = new Experience
-
+    this.experience = new Experience();
     this.id = 'wildPlayground';
+    this.poemsEl = this.experience.poemsEl
     this.containerEl = document.querySelector(`#${this.id}`);
+
+    this.containerEl.addEventListener('click', () => {
+      animateScrollTo(this.containerEl, this.poemsEl, 60)
+    })
+
     this.init();
   }
 

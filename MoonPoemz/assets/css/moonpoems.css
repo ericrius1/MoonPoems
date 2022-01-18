@@ -133,7 +133,7 @@ article {
   justify-content: center;
   width: 100%;
   min-height: 200px;
-  border-bottom: 1px solid rgba(0,0,0,.65);
+  border-bottom: 10px solid #181512;;
   cursor: pointer;
 }
 
@@ -269,12 +269,7 @@ article {
    vertical-align: baseline;
  }
  
- html,
- body {
-   background-color: #252423;
-   color: #F6F4F2;
- }
- 
+
  body {
    font-family: Roobert, Helvetica Neue, Helvetica, Arial, sans-serif;
    font-weight: 400;
