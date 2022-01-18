@@ -1,5 +1,5 @@
 import * as THREE from '../libs/three/three.module.js'
-import anime from '../libs/anime.es.js'
+import Stats from '../libs/three/examples/jsm/Stats.js'
 
 let instance = null
 
@@ -20,12 +20,13 @@ export default class Experience {
     document.body.classList.add('ready')
 
     this.renderer = new THREE.WebGLRenderer({
-      powerPreference: 'high-performance',
-      alpha: true
+      // powerPreference: 'high-performance',
+      alpha: true,
+      // antialias: true
     })
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    // this.renderer.setClearColor(0x1101222, 0);
+    this.renderer.setClearColor(0x1101222, 0);
 
     this.devicePixelRatio = window.devicePixelRatio;
 
@@ -36,7 +37,7 @@ export default class Experience {
     this.hemiLight.groundColor.convertSRGBToLinear();
     this.scene.add(this.hemiLight)
 
-    this.update();
+    // this.update();
 
   }
 

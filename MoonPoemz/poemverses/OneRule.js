@@ -1,6 +1,7 @@
 import Experience from "../../modules/Experience.js"
 import * as THREE from '../../libs/three/three.module.js'
 import { animateScrollTo } from '../../modules/utils/dom.js'
+import anime from "../../libs/anime.es.js"
 
 // register canvas with experience so it can be updated
 export class OneRule {
@@ -13,10 +14,18 @@ export class OneRule {
 
     this.containerEl.addEventListener('click', () => {
       animateScrollTo(this.containerEl, this.poemsEl, 60)
+
+      anime({
+        targets: { height: this.containerEl.clientHeight },
+        height: window.innerHeight,
+        duration: 700,
+        update: (a) => {
+          let height = a.animations[0].currentValue;
+          this.containerEl.style.height = height + 'px';
+        }
+      })
     })
-
     this.init();
-
   }
 
   init() {

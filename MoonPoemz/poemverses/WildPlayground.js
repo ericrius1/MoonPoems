@@ -47,7 +47,6 @@ export class WildPlayground {
 
     this.createFluidLightForm();
 
-
     this.containerEl.appendChild(this.canvasEl)
     this.experience.registerView(this);
 
@@ -56,7 +55,7 @@ export class WildPlayground {
   createFluidLightForm() {
     let geo = new THREE.IcosahedronGeometry(1, 0);
     let mat = new THREE.MeshStandardMaterial({
-      flatShading: true,
+      // flatShading: true,
     });
     mat.color.setHex(0xFF00aa).convertSRGBToLinear();
     this.centerMesh = new THREE.Mesh(geo, mat);
