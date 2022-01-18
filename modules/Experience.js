@@ -50,7 +50,6 @@ export default class Experience {
       this.views[i].update();
     }
     this.renderer.setAnimationLoop(this.update.bind(this))
-    console.log('update')
   }
 
 }

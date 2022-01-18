@@ -24,21 +24,21 @@ export class OneRule {
     this.renderer = this.experience.renderer;
 
 
-    this.width = this.containerEl.offsetWidth;
-    this.height = this.containerEl.offsetHeight;
+    this.devicePixelRatio = window.devicePixelRatio
+    this.width = this.containerEl.offsetWidth * this.devicePixelRatio;
+    this.height = this.containerEl.offsetHeight * this.devicePixelRatio;
 
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 100);
 
     this.canvasEl = document.createElement('canvas');
     this.context = this.canvasEl.getContext('2d');
 
-    this.devicePixelRatio = window.devicePixelRatio
 
-    this.renderer.setSize(this.width * this.devicePixelRatio, this.height * this.devicePixelRatio, false)
-    this.canvasEl.width = this.width * this.devicePixelRatio;
-    this.canvasEl.height = this.height * this.devicePixelRatio;
-    this.canvasEl.style.width = this.width + "px";
-    this.canvasEl.style.height = this.height + "px";
+    this.renderer.setSize(this.width, this.height, false)
+    this.canvasEl.width = this.width;
+    this.canvasEl.height = this.height;
+    this.canvasEl.style.width = this.width / 2 + "px";
+    this.canvasEl.style.height = this.height / 2 + "px";
     this.context.fillStyle = this.containerEl.style.backgroundColor;
 
 
@@ -72,7 +72,7 @@ export class OneRule {
 
   render() {
     this.renderer.render(this.scene, this.camera)
-    this.context.fillRect(0, 0, this.canvasEl.width, this.canvasEl.height)
+    this.context.fillRect(0, 0, this.width, this.height)
     this.context.drawImage(this.renderer.domElement, 0, 0);
   }
 
