@@ -13,7 +13,7 @@ export default class Experience {
     window.experience = this
 
     this.stats = new Stats();
-    document.body.appendChild(this.stats.dom);
+    // document.body.appendChild(this.stats.dom);
 
     this.views = [];
 

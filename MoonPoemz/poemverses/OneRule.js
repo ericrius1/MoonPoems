@@ -15,21 +15,24 @@ export class OneRule {
     this.view_state = { preview: 'preview', active: 'active' }
     this.VIEW_STATE = this.view_state.preview;
 
-    let targetHeight, startingHeight, savedHeight;
-    this.containerEl.addEventListener('click', () => {
+    let targetHeight, startingHeight, savedHeight, overflow;
+    this.containerEl.addEventListener('pointerdown', () => {
       // animateScrollTo(this.containerEl, this.poemsEl, 60)
-      console.log(this.VIEW_STATE)
       if (this.VIEW_STATE === this.view_state.preview) {
         targetHeight = window.innerHeight;
         startingHeight = this.containerEl.clientHeight
         savedHeight = this.containerEl.clientHeight
+        overflow = "hidden";
         this.VIEW_STATE = this.view_state.active;
+
 
       } else {
         startingHeight = targetHeight;
-        targetHeight = savedHeight
+        targetHeight = savedHeight;
+        overflow = 'auto';
         this.VIEW_STATE = this.view_state.preview;
       }
+      this.poemsEl.style.overflow = overflow;
       anime({
         targets: { height: startingHeight },
         height: targetHeight,
@@ -37,6 +40,8 @@ export class OneRule {
         update: (a) => {
           let height = a.animations[0].currentValue;
           this.containerEl.style.height = height + 'px';
+        },
+        complete: () => {
         }
       })
     })
