@@ -12,6 +12,9 @@ export default class Experience {
     instance = this
     window.experience = this
 
+    this.stats = new Stats();
+    document.body.appendChild(this.stats.dom);
+
     this.views = [];
 
     this.poemsEl = document.querySelector('.poems');

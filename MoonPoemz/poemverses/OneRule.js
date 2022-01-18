@@ -12,13 +12,28 @@ export class OneRule {
     this.id = 'oneRule';
     this.containerEl = document.querySelector(`#${this.id}`);
 
-    this.containerEl.addEventListener('click', () => {
-      animateScrollTo(this.containerEl, this.poemsEl, 60)
+    this.view_state = { preview: 'preview', active: 'active' }
+    this.VIEW_STATE = this.view_state.preview;
 
+    let targetHeight, startingHeight, savedHeight;
+    this.containerEl.addEventListener('click', () => {
+      // animateScrollTo(this.containerEl, this.poemsEl, 60)
+      console.log(this.VIEW_STATE)
+      if (this.VIEW_STATE === this.view_state.preview) {
+        targetHeight = window.innerHeight;
+        startingHeight = this.containerEl.clientHeight
+        savedHeight = this.containerEl.clientHeight
+        this.VIEW_STATE = this.view_state.active;
+
+      } else {
+        startingHeight = targetHeight;
+        targetHeight = savedHeight
+        this.VIEW_STATE = this.view_state.preview;
+      }
       anime({
-        targets: { height: this.containerEl.clientHeight },
-        height: window.innerHeight,
-        duration: 700,
+        targets: { height: startingHeight },
+        height: targetHeight,
+        duration: 3000,
         update: (a) => {
           let height = a.animations[0].currentValue;
           this.containerEl.style.height = height + 'px';
