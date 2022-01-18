@@ -25,31 +25,32 @@ export default class Experience {
     })
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    this.renderer.setClearColor(0x1101222, 0);
+    // this.renderer.setClearColor(0x1101222, 0);
 
     this.devicePixelRatio = window.devicePixelRatio;
 
     this.scene = new THREE.Scene();
 
-    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0xff0000, 0.1);
     this.hemiLight.color.convertSRGBToLinear();
     this.hemiLight.groundColor.convertSRGBToLinear();
-
     this.scene.add(this.hemiLight)
 
-    let moonGeo = new THREE.IcosahedronGeometry(1, 0, 30);
-    let moonMat = new THREE.MeshStandardMaterial({
-      flatShading: true
-    });
-    moonMat.color.setHex(0x5A87FF).convertSRGBToLinear();
-    this.moon = new THREE.Mesh(moonGeo, moonMat)
-    this.scene.add(this.moon);
+    this.update();
 
   }
 
   registerView(poemVerse) {
     this.views.push(poemVerse);
     poemVerse.render()
+  }
+
+  update() {
+    for (let i = 0; i < this.views.length; i++) {
+      this.views[i].update();
+    }
+    this.renderer.setAnimationLoop(this.update.bind(this))
+    console.log('update')
   }
 
 }

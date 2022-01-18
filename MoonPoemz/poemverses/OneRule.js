@@ -39,8 +39,10 @@ export class OneRule {
     this.canvasEl.height = this.height * this.devicePixelRatio;
     this.canvasEl.style.width = this.width + "px";
     this.canvasEl.style.height = this.height + "px";
+    this.context.fillStyle = this.containerEl.style.backgroundColor;
 
-    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .1);
+
+    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0xff00ff, .1);
     this.scene.add(this.hemiLight);
 
     this.createFluidLightForm();
@@ -54,20 +56,24 @@ export class OneRule {
   createFluidLightForm() {
     let geo = new THREE.IcosahedronGeometry(1, 0);
     let mat = new THREE.MeshStandardMaterial({
-      // flatShading: true,
-      color: 0x1100ff
+      flatShading: true,
     });
+    mat.color.setHex(0x5A87FF).convertSRGBToLinear();
     this.centerMesh = new THREE.Mesh(geo, mat);
     this.centerMesh.position.set(0, 0, -7)
     this.scene.add(this.centerMesh);
 
   }
 
+  update() {
+    this.centerMesh.rotation.y += .01;
+    this.render();
+  }
+
   render() {
     this.renderer.render(this.scene, this.camera)
+    this.context.fillRect(0, 0, this.canvasEl.width, this.canvasEl.height)
     this.context.drawImage(this.renderer.domElement, 0, 0);
-
-
   }
 
   start() {

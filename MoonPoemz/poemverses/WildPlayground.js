@@ -45,6 +45,10 @@ export class WildPlayground {
 
   }
 
+  update() {
+    this.render();
+  }
+
   render() {
     this.renderer.render(this.scene, this.camera)
     this.context.drawImage(this.renderer.domElement, 0, 0);
@@ -61,8 +65,6 @@ export class WildPlayground {
     this.camera.position.y = this.centerMesh.position.y;
     this.scene.add(this.centerMesh);
     this.centerMesh.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, 0);
-
-    // this.camera.lookAt(this.centerMesh.position)
 
   }
 
