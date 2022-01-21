@@ -1,22 +1,45 @@
-import Experience from "../../modules/Experience.js"
+import Experience from "../Experience.js"
 import * as THREE from '../../libs/three/three.module.js'
-import { animateScrollTo } from '../../modules/utils/dom.js'
+import anime from "../../libs/anime.es.js"
 
 // register canvas with experience so it can be updated
-export class WildPlayground {
+export class OneRule {
   constructor() {
     this.experience = new Experience
     this.poemsEl = this.experience.poemsEl
 
-    this.id = 'wildPlayground';
+    this.id = 'oneRule';
     this.containerEl = document.querySelector(`#${this.id}`);
 
-    this.containerEl.addEventListener('click', () => {
-      animateScrollTo(this.containerEl, this.poemsEl, 60)
+    this.view_state = { preview: 'preview', active: 'active' }
+    this.VIEW_STATE = this.view_state.preview;
+
+    let targetHeight, startingHeight, savedHeight, overflow;
+    this.containerEl.addEventListener('pointerdown', () => {
+      if (this.VIEW_STATE === this.view_state.preview) {
+        targetHeight = window.innerHeight;
+        startingHeight = this.containerEl.clientHeight
+        savedHeight = this.containerEl.clientHeight
+        overflow = "hidden";
+        this.VIEW_STATE = this.view_state.active;
+      } else {
+        startingHeight = targetHeight;
+        targetHeight = savedHeight;
+        overflow = 'auto';
+        this.VIEW_STATE = this.view_state.preview;
+      }
+      this.poemsEl.style.overflow = overflow;
+      anime({
+        targets: { height: startingHeight },
+        height: targetHeight,
+        duration: 3000,
+        update: (a) => {
+          let height = a.animations[0].currentValue;
+          this.containerEl.style.height = height + 'px';
+        }
+      })
     })
-
     this.init();
-
   }
 
   init() {
@@ -47,6 +70,7 @@ export class WildPlayground {
 
     this.createFluidLightForm();
 
+
     this.containerEl.appendChild(this.canvasEl)
     this.experience.registerView(this);
 
@@ -55,19 +79,17 @@ export class WildPlayground {
   createFluidLightForm() {
     let geo = new THREE.IcosahedronGeometry(1, 0);
     let mat = new THREE.MeshStandardMaterial({
-      // flatShading: true,
+      flatShading: true,
     });
-    mat.color.setHex(0xFF00aa).convertSRGBToLinear();
+    mat.color.setHex(0x5A87FF).convertSRGBToLinear();
     this.centerMesh = new THREE.Mesh(geo, mat);
-    this.centerMesh.position.set(0, -10, -7)
-    this.camera.position.y = -10;
+    this.centerMesh.position.set(0, 0, -7)
     this.scene.add(this.centerMesh);
 
   }
 
   update() {
-    this.centerMesh.rotation.y -= .005;
-    this.centerMesh.rotation.x += .007;
+    this.centerMesh.rotation.y += .01;
     this.render();
   }
 
@@ -94,4 +116,4 @@ export class WildPlayground {
 
 }
 
-let wildPlayground = new WildPlayground();
+let oneRule = new OneRule();

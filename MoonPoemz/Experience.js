@@ -1,5 +1,6 @@
 import * as THREE from '../libs/three/three.module.js'
 import Stats from '../libs/three/examples/jsm/Stats.js'
+import { createPoems } from './poemverse/Poems.js'
 
 let instance = null
 
@@ -19,6 +20,8 @@ export default class Experience {
 
     this.poemsEl = document.querySelector('.poems');
     this.articleEls = document.querySelectorAll('article')
+
+    createPoems();
 
     document.body.classList.add('ready')
 
