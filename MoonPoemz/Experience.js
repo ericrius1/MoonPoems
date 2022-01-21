@@ -21,13 +21,12 @@ export default class Experience {
     this.poemsEl = document.querySelector('.poems');
     this.articleEls = document.querySelectorAll('article')
 
-    createPoems();
 
     document.body.classList.add('ready')
 
     this.renderer = new THREE.WebGLRenderer({
       // powerPreference: 'high-performance',
-      alpha: true,
+      // alpha: true,
       // antialias: true
     })
 
@@ -42,6 +41,9 @@ export default class Experience {
     this.hemiLight.color.convertSRGBToLinear();
     this.hemiLight.groundColor.convertSRGBToLinear();
     this.scene.add(this.hemiLight)
+
+    createPoems();
+
 
     // this.update();
 

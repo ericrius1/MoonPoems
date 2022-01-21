@@ -1,8 +1,10 @@
 import anime from "../../libs/anime.es.js"
 import { animateScrollTo } from "../../modules/utils/dom.js";
+import { OneRule } from "./OneRule.js";
 export function createPoems() {
   createPoem({
-    title: 'bhnoop'
+    title: 'bhnoop',
+    viz: OneRule
   });
 
   createPoem({
@@ -15,13 +17,15 @@ export function createPoems() {
 }
 
 function createPoem(options) {
-  options = options || {
+
+  let defaultOptions = {
     title: "Shnur",
-    color: "purple"
+    color: "purple",
+    viz: OneRule
   }
+  options = { ...defaultOptions, ...options }
 
   let articleEl = document.querySelector('#blueOcean');
-
   let poemsEl = document.querySelector('.poems');
   let poemEl = document.createElement('div');
   poemEl.id = options.title;
@@ -44,10 +48,9 @@ function createPoem(options) {
   canvasEl.height = poemEl.clientHeight * devicePixelRatio;
   canvasEl.style.width = canvasEl.width / 2 + 'px';
   canvasEl.style.height = canvasEl.height / 2 + 'px';
-  context.fillStyle = poemEl.style.backgroundColor;
-  context.fillStyle = "purple";
-
+  canvasEl.id = options.title
   poemEl.appendChild(canvasEl);
+  poemEl.viz = new options.viz(canvasEl);
 
 
   poemEl.addEventListener('pointerup', (event) => {
@@ -74,6 +77,7 @@ function createPoem(options) {
       update: (a) => {
         let height = a.animations[0].currentValue;
         poemEl.style.height = height + 'px';
+        resize();
       }
     })
     full = !full;
@@ -84,5 +88,12 @@ function createPoem(options) {
   function resize() {
     canvasEl.width = poemEl.clientWidth * devicePixelRatio;
     canvasEl.height = poemEl.clientHeight * devicePixelRatio;
+    canvasEl.style.width = canvasEl.width / 2 + 'px';
+    canvasEl.style.height = canvasEl.height / 2 + 'px';
+    poemEl.viz.render();
+
   }
+
+
+
 }
