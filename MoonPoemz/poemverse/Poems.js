@@ -36,6 +36,20 @@ function createPoem(options) {
   poemEl.appendChild(titleEl);
   let full = false;
   let targetHeight, startingHeight, savedHeight, overflow;
+
+  let devicePixelRatio = 2
+  let canvasEl = document.createElement('canvas');
+  let context = canvasEl.getContext('2d');
+  canvasEl.width = poemEl.clientWidth * devicePixelRatio
+  canvasEl.height = poemEl.clientHeight * devicePixelRatio;
+  canvasEl.style.width = canvasEl.width / 2 + 'px';
+  canvasEl.style.height = canvasEl.height / 2 + 'px';
+  context.fillStyle = poemEl.style.backgroundColor;
+  context.fillStyle = "purple";
+
+  poemEl.appendChild(canvasEl);
+
+
   poemEl.addEventListener('pointerup', (event) => {
     if (!full) {
       targetHeight = window.innerHeight;
@@ -51,11 +65,12 @@ function createPoem(options) {
       poemEl.classList.remove('full')
       overflow = 'auto';
     }
-    poemsEl.style.overflow = overflow
+    document.body.style.overflow = overflow
+    poemsEl.style.overflow = overflow;
     anime({
       targets: { height: startingHeight },
       height: targetHeight,
-      duration: 3000,
+      duration: 1000,
       update: (a) => {
         let height = a.animations[0].currentValue;
         poemEl.style.height = height + 'px';
@@ -64,9 +79,10 @@ function createPoem(options) {
     full = !full;
 
   })
+  window.addEventListener('resize', resize);
 
-  // }, 2000)
-
-
-
+  function resize() {
+    canvasEl.width = poemEl.clientWidth * devicePixelRatio;
+    canvasEl.height = poemEl.clientHeight * devicePixelRatio;
+  }
 }
