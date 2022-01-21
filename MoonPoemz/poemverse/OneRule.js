@@ -18,7 +18,7 @@ export class OneRule {
     this.scene = this.experience.scene;
     this.renderer = this.experience.renderer;
 
-    this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 100);
+    this.camera = new THREE.PerspectiveCamera(60, this.canvas.width / this.canvas.height, 0.1, 100);
 
     this.hemiLight = new THREE.HemisphereLight(0xffffff, 0xff00ff, .1);
     this.scene.add(this.hemiLight);
@@ -47,10 +47,12 @@ export class OneRule {
   }
 
   render() {
-    // this.renderer.render(this.scene, this.camera)
     this.context.fillStyle = this.fillStyle;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    // this.context.drawImage(this.renderer.domElement, 0, 0);
+
+    this.renderer.setSize(this.canvas.width, this.canvas.height)
+    this.renderer.render(this.scene, this.camera)
+    this.context.drawImage(this.renderer.domElement, 0, 0, this.canvas.width, this.canvas.height);
   }
 
   start() {
