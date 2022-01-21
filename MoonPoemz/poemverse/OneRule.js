@@ -50,9 +50,8 @@ export class OneRule {
     this.context.fillStyle = this.fillStyle;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.renderer.setSize(this.canvas.width, this.canvas.height)
     this.renderer.render(this.scene, this.camera)
-    this.context.drawImage(this.renderer.domElement, 0, 0, this.canvas.width, this.canvas.height);
+    this.context.drawImage(this.renderer.domElement, 0, 0);
   }
 
   start() {

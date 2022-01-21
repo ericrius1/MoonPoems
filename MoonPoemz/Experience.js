@@ -26,12 +26,12 @@ export default class Experience {
 
     this.renderer = new THREE.WebGLRenderer({
       // powerPreference: 'high-performance',
-      // alpha: true,
+      alpha: true,
       // antialias: true
     })
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    this.renderer.setClearColor(0xff00ff, 1);
+    this.renderer.setClearColor(0xff00ff, 0);
 
     this.devicePixelRatio = window.devicePixelRatio;
 
@@ -42,11 +42,13 @@ export default class Experience {
     this.hemiLight.groundColor.convertSRGBToLinear();
     this.scene.add(this.hemiLight)
 
-    createPoems();
-
 
     // this.update();
 
+  }
+
+  init() {
+    createPoems();
   }
 
   registerView(poemVerse) {
@@ -64,6 +66,7 @@ export default class Experience {
 }
 
 const experience = new Experience();
+experience.init();
 
 
 
