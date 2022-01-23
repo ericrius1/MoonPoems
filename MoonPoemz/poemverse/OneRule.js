@@ -1,6 +1,6 @@
 import Experience from "../Experience.js"
 import * as THREE from '../../libs/three/three.module.js'
-import { randomIntInRange as RI } from "../../modules/utils/math.js"
+import { randomIntInRange as RI, randomInRange as RF } from "../../modules/utils/math.js"
 import anime from "../../libs/anime.es.js"
 
 // register canvas with experience so it can be updated
@@ -59,7 +59,30 @@ export class OneRule {
   }
 
   play() {
+    this.twirl();
 
+  }
+
+  twirl() {
+    console.log('twirl')
+    anime({
+      targets: {
+        rotateX: this.centerMesh.rotation.x,
+        rotateY: this.centerMesh.rotation.y,
+        rotateZ: this.centerMesh.rotation.z
+      },
+      rotateX: RF(0, Math.PI * 2),
+      rotateY: RF(0, Math.PI * 2),
+      rotateZ: RF(0, Math.PI * 2),
+      duration: 7000,
+      update: (a) => {
+        this.centerMesh.rotation.x = a.animations[0].currentValue,
+          this.centerMesh.rotation.y = a.animations[1].currentValue,
+          this.centerMesh.rotation.z = a.animations[2].currentValue
+      }
+
+
+    })
   }
   pause() {
 

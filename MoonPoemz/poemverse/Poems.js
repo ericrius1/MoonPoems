@@ -65,6 +65,7 @@ export function createPoems() {
         overflow = "hidden";
         poemEl.classList.add('full');
         animateScrollTo(poemEl, poemsEl, 60);
+        poemEl.viz.play();
       } else {
         poemEl.classList.remove('full');
         startingHeight = targetHeight;
