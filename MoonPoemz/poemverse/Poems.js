@@ -1,30 +1,37 @@
 import anime from "../../libs/anime.es.js"
 import { animateScrollTo } from "../../modules/utils/dom.js";
 import { OneRule } from "./OneRule.js";
+import * as THREE from '../../libs/three/three.module.js'
 import Experience from "../Experience.js";
 export function createPoems() {
   let experience = new Experience();
   let renderer = experience.renderer;
+
+
   createPoem({
     title: 'bhnoop',
-    viz: OneRule
+    viz: OneRule,
+    position: new THREE.Vector3(0, 0, -7)
   });
 
   createPoem({
-    title: 'skiing'
-  });
-
-  createPoem({
-    title: 'helicopter'
+    title: 'skiing',
+    position: new THREE.Vector3(0, -10, -4)
   })
 
+  createPoem({
+    title: 'bhnoopzz',
+    viz: OneRule,
+    position: new THREE.Vector3(0, -20, -7)
+  });
 
   function createPoem(options) {
 
     let defaultOptions = {
       title: "Shnur",
       color: "purple",
-      viz: OneRule
+      viz: OneRule,
+      position: new THREE.Vector3(0, 0, 0)
     }
     options = { ...defaultOptions, ...options }
 
@@ -53,7 +60,7 @@ export function createPoems() {
     canvasEl.style.height = canvasEl.height / 2 + 'px';
     canvasEl.id = options.title
     poemEl.appendChild(canvasEl);
-    poemEl.viz = new options.viz(canvasEl);
+    poemEl.viz = new options.viz(canvasEl, options.position);
     resize();
 
 
