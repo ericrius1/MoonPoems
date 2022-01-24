@@ -11,7 +11,7 @@ export function createPoems() {
   createPoem({
     title: 'bhnoop',
     viz: OneRule,
-    position: new THREE.Vector3(0, 0, -7)
+    position: new THREE.Vector3(2, 0, -7)
   });
 
   createPoem({
@@ -20,9 +20,9 @@ export function createPoems() {
   })
 
   createPoem({
-    title: 'bhnoopzz',
+    title: 'helicopter',
+    position: new THREE.Vector3(0, -20, -4),
     viz: OneRule,
-    position: new THREE.Vector3(0, -20, -7)
   });
 
   function createPoem(options) {
@@ -36,7 +36,6 @@ export function createPoems() {
     options = { ...defaultOptions, ...options }
 
     let articleEl = document.querySelector('#blueOcean');
-    let poemsEl = document.querySelector('.poems');
     let poemEl = document.createElement('div');
     poemEl.id = options.title;
     poemEl.classList.add('poem');
@@ -53,7 +52,6 @@ export function createPoems() {
 
     let devicePixelRatio = 2
     let canvasEl = document.createElement('canvas');
-    let context = canvasEl.getContext('2d');
     canvasEl.width = poemEl.clientWidth * devicePixelRatio
     canvasEl.height = poemEl.clientHeight * devicePixelRatio;
     canvasEl.style.width = canvasEl.width / 2 + 'px';
@@ -67,11 +65,11 @@ export function createPoems() {
     poemEl.addEventListener('pointerup', (event) => {
       if (!full) {
         targetHeight = window.innerHeight;
-        startingHeight = poemEl.clientHeight
-        savedHeight = poemEl.clientHeight
+        startingHeight = poemEl.offsetHeight
+        savedHeight = poemEl.offsetHeight
         overflow = "hidden";
         poemEl.classList.add('full');
-        animateScrollTo(poemEl, poemsEl, 60);
+        // animateScrollTo(poemEl, poemsEl, 60);
         poemEl.viz.play();
       } else {
         poemEl.classList.remove('full');
@@ -80,12 +78,12 @@ export function createPoems() {
         poemEl.classList.remove('full')
         overflow = 'auto';
       }
-      document.body.style.overflow = overflow
-      poemsEl.style.overflow = overflow;
+      // document.body.style.overflow = overflow
+      // poemsEl.style.overflow = overflow;
       anime({
         targets: { height: startingHeight },
         height: targetHeight,
-        duration: 1000,
+        duration: 3000,
         update: (a) => {
           let height = a.animations[0].currentValue;
           poemEl.style.height = height + 'px';
@@ -102,10 +100,8 @@ export function createPoems() {
       canvasEl.height = poemEl.clientHeight * devicePixelRatio;
       canvasEl.style.width = canvasEl.width / 2 + 'px';
       canvasEl.style.height = canvasEl.height / 2 + 'px';
-      renderer.setSize(canvasEl.width, canvasEl.height)
       poemEl.viz.camera.aspect = canvasEl.width / canvasEl.height;
       poemEl.viz.camera.updateProjectionMatrix();
-      // renderer.setSize(canvasEl.width, canvasEl.height)
       poemEl.viz.render();
 
     }

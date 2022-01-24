@@ -7,6 +7,7 @@ import anime from "../../libs/anime.es.js"
 export class OneRule {
   constructor(canvasEl, position) {
     this.experience = new Experience()
+    this.renderer = this.experience.renderer;
     this.canvas = canvasEl
     this.position = position.clone();
     this.context = this.canvas.getContext('2d');
@@ -51,6 +52,7 @@ export class OneRule {
   render() {
     this.context.fillStyle = this.fillStyle;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.renderer.setSize(this.canvas.width, this.canvas.height)
 
     this.renderer.render(this.scene, this.camera)
     this.context.drawImage(this.renderer.domElement, 0, 0);
@@ -76,13 +78,12 @@ export class OneRule {
       rotateX: RF(0, Math.PI * 2),
       rotateY: RF(0, Math.PI * 2),
       rotateZ: RF(0, Math.PI * 2),
-      duration: 2000,
+      duration: 4000,
       update: (a) => {
         this.centerMesh.rotation.x = a.animations[0].currentValue
         this.centerMesh.rotation.y = a.animations[1].currentValue
         this.centerMesh.rotation.z = a.animations[2].currentValue
         this.render();
-        console.log('render')
       }
 
 
