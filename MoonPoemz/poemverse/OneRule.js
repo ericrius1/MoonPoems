@@ -52,7 +52,7 @@ export class OneRule {
   render() {
     this.context.fillStyle = this.fillStyle;
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    this.renderer.setSize(this.canvas.width, this.canvas.height)
+    this.renderer.setSize(this.canvas.width, this.canvas.height, false)
 
     this.renderer.render(this.scene, this.camera)
     this.context.drawImage(this.renderer.domElement, 0, 0);
@@ -75,6 +75,7 @@ export class OneRule {
         rotateY: this.centerMesh.rotation.y,
         rotateZ: this.centerMesh.rotation.z
       },
+      easing: 'easeInOutCubic',
       rotateX: RF(0, Math.PI * 2),
       rotateY: RF(0, Math.PI * 2),
       rotateZ: RF(0, Math.PI * 2),

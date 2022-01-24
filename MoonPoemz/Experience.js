@@ -34,6 +34,7 @@ export default class Experience {
     this.renderer.setClearColor(0xff00ff, 0.2);
 
     this.devicePixelRatio = window.devicePixelRatio;
+    console.log(this.devicePixelRatio)
 
     this.scene = new THREE.Scene();
 

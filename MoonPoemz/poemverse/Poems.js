@@ -50,7 +50,7 @@ export function createPoems() {
     let full = false;
     let targetHeight, startingHeight, savedHeight, overflow;
 
-    let devicePixelRatio = 2
+    let devicePixelRatio = 1
     let canvasEl = document.createElement('canvas');
     canvasEl.width = poemEl.clientWidth * devicePixelRatio
     canvasEl.height = poemEl.clientHeight * devicePixelRatio;
@@ -83,7 +83,7 @@ export function createPoems() {
       anime({
         targets: { height: startingHeight },
         height: targetHeight,
-        duration: 3000,
+        duration: 1000,
         update: (a) => {
           let height = a.animations[0].currentValue;
           poemEl.style.height = height + 'px';
